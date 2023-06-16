@@ -79,7 +79,7 @@ public class TripDAO {
 	}
 
 	// 삭제
-	public void deleteTrip(int id) {
+	public int deleteTrip(int id) {
 	    final String deleteQuery = "DELETE FROM trip WHERE id = ?";
 	    
 	    try (Connection connection = DBUtil.getConnection();
@@ -87,14 +87,15 @@ public class TripDAO {
 
 	        statement.setInt(1, id);
 	        int rowsAffected = statement.executeUpdate();
-	        
+	        return rowsAffected;
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
+	    return 0;
 	}
 	
 	// 수정
-	public void updateTrip(Trip trip, int updateId) {
+	public int updateTrip(Trip trip, int updateId) {
 	    final String updateQuery = "UPDATE Trip SET continent = ?, country = ?, city = ? WHERE id = ?";
 
 	    try (Connection connection = DBUtil.getConnection();
@@ -105,11 +106,12 @@ public class TripDAO {
 	           statement.setString(3, trip.getCity());
 	           statement.setInt(4, updateId);
 
-	           statement.executeUpdate(); // 수정된 부분
-
+	           int state = statement.executeUpdate(); // 수정된 부분
+	           return state;
 	       } catch (SQLException e) {
 	           e.printStackTrace();
 	       }
+	    return 0;
 	}
 
 }

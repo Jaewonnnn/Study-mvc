@@ -23,15 +23,18 @@ public class TripController {
 
 	// 추가
 	public void insertTrip(Trip trip) {
-		dao.insertTrip(trip);
+		Trip state = dao.insertTrip(trip);
+		view.insertTrip();
 	}
 	// 삭제
 	public void deleteTrip(int id) {
-		dao.deleteTrip(id);
+		int state = dao.deleteTrip(id);
+		view.deleteTrip(state, id);
 	}
 	// 수정
 	public void updateTrip(Trip trip, int id) {
-		dao.updateTrip(trip, id);
+		int state = dao.updateTrip(trip, id);
+		view.updateTrip(state, id);
 	}
 	
 	

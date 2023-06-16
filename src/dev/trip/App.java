@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 import dev.trip.controller.TripController;
 import dev.trip.model.Trip;
+import dev.trip.view.TripView;
 
 public class App {
 
 	public static void main(String[] args) {
 		TripController tc = new TripController();
-
+		
+		
 		Scanner scanner = new Scanner(System.in);
 
 		boolean buf = true;
@@ -79,3 +81,15 @@ public class App {
 	}
 
 }
+
+
+/*
+ * 트러블슈팅 
+ * 테이블 추가만 할 때는 괜찮지만 삭제 후 추가할 때 id번호가 자동으로 -되는것이 아니라 계속 +됨. AUTO_INCREMENT때문임
+ *
+ * 자동 증가 속성을 사용하는 경우에는 자동 증가 속성을 제거하고 수동 증가를 사용해야 순차적으로 id를 증가시킬 수 있습니다. 
+ * 하지만 이러한 변경은 권장되지 않습니다.
+ * 여러 행을 추가하거나 삭제해도 중복되지 않는 고유한 id를 만드는 자동 증가 속성을 계속 사용하는 것이 좋습니다.
+ * 자동 증가를 사용하면 동시성 문제와 성능 저하를 방지할 수 있습니다. 
+ * 순차적인 번호 규칙이 중요하지 않다면, 자동 증가 속성을 사용하는 것이 더 효율적인 선택이 될 것입니다.
+ */
